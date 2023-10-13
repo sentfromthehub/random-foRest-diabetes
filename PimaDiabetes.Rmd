@@ -1,0 +1,12 @@
+title: "Predicting Diabetes using Pima Indians Data Set"
+author: "Aadil V"
+output: html_document
+---
+```{r} 
+library(neuralnet)
+library(caret)
+library(tidyverse)
+library(mlbench)
+library(e1071)
+
+```
