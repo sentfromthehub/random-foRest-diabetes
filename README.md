@@ -1,7 +1,5 @@
 # random-foRest-diabetes
 
-# Diabetes Prediction with Pima Indians Dataset
-
 In this project, my goal was to predict the occurrence of diabetes within the Pima Indian population, known for its high prevalence of diabetes.
 
 ## Objectives
