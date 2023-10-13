@@ -2,11 +2,44 @@ title: "Predicting Diabetes using Pima Indians Data Set"
 author: "Aadil V"
 output: html_document
 ---
-```{r} 
+```{r, results='hide'} 
 library(neuralnet)
 library(caret)
 library(tidyverse)
 library(mlbench)
 library(e1071)
+library(ranger)
+
+```
+```{r}
+data(PimaIndiansDiabetes)
+df <- PimaIndiansDiabetes
+str(df)
+
+## Plotting the outcomes of the response variables
+ggplot(df, aes(diabetes, fill = factor(diabetes))) +
+  geom_bar()
+
+df$binary <- ifelse(df$diabetes == "neg", 0, 1)
+str(df)
+
+```
+```{r}
+## Splitting the data into training and testing sets
+
+rows <- createDataPartition(df$binary, times = 1, p = .7, list = FALSE)
+
+train <- df[rows,]
+test <- df[-rows,]
+
+dim(train)
+dim(test)
+```
+```{r}
+## Building a random forest model
+model <- train(as.factor(binary) ~ .,
+               data = train,
+               method = "ranger",
+               trControl = trainControl(method = "repeatedcv", number = 2, repeats = 2))
 
 ```
