@@ -2,7 +2,7 @@ title: "Predicting Diabetes using Pima Indians Data Set"
 author: "Aadil V"
 output: html_document
 ---
-```{r, results='hide'} 
+```{r, results='hide', message=FALSE, warning=FALSE} 
 library(neuralnet)
 library(caret)
 library(tidyverse)
