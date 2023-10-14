@@ -1,3 +1,4 @@
+---
 title: "Predicting Diabetes using Pima Indians Data Set"
 author: "Aadil V"
 output: html_document
@@ -40,6 +41,16 @@ test <- df[-rows,]
 dim(train)
 dim(test)
 ```
+```{r}
+## Fix overfitting and perfect accuracy on both train and test sets by removing diabetes column
+
+train <- train[,-9]
+test <- test[,-9]
+str(train)
+
+
+```
+
 ```{r}
 ## Building a random forest model
 model <- train(as.factor(binary) ~ .,
