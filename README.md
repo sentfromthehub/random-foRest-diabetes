@@ -9,7 +9,7 @@ I divided this project into four main objectives:
 1. **Data Preprocessing**: Generate a random training and test set from the data
 2. **Exploratory Data Analysis**: Perform exploratory data analysis using the `ggplot2` package
 3. **Machine Learning Models**: Apply the Random Forest Model machine learning model to the dataset
-4. See how well my model performs by anaylzing the results using RMSE and a Confusion Matrix
+4. See how well my model performs by anaylzing the results using a Confusion Matrix
 
 ## What I learned
 - Creating an R markdown document to analyze a dataset, perform EDA, model building and evaluation
