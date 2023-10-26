@@ -53,17 +53,17 @@ str(train)
 
 ```{r}
 ## Building a random forest model
-model <- train(as.factor(binary) ~ .,
-               data = train,
-               method = "ranger",
-               trControl = trainControl(method = "repeatedcv", number = 2, repeats = 2))
+model <- train(as.factor(binary) ~ ., ## Train model predicting `binary` based on all other variables
+               data = train, ## Use training data
+               method = "ranger", ## Use random forest
+               trControl = trainControl(method = "repeatedcv", number = 2, repeats = 2)) ## Use repeated cross validation with 2 folds and 2 repeats
 
 model
 
 ```
 
 ```{r}
-## Testing the model on the test set and building a confusion matrix
+## Testing the model on the test set and building a confusion matrix where 0 represents  diabetes negative and 1 represents diabetes positive
 pred_train <- predict(model, train)
 pred_test <- predict(model, test)
 
