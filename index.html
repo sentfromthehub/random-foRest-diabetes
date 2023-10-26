@@ -414,6 +414,7 @@ train &lt;- train[,-9]
 test &lt;- test[,-9]
 str(train)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    538 obs. of  9 variables:
+<<<<<<< HEAD
 ##  $ pregnant: num  6 1 8 1 5 3 10 2 8 10 ...
 ##  $ glucose : num  148 85 183 89 116 78 115 197 125 168 ...
 ##  $ pressure: num  72 66 64 66 74 50 0 70 96 74 ...
@@ -428,6 +429,22 @@ model &lt;- train(as.factor(binary) ~ ., ## Train model predicting `binary` base
                data = train, ## Use training data
                method = &quot;ranger&quot;, ## Use random forest
                trControl = trainControl(method = &quot;repeatedcv&quot;, number = 2, repeats = 2)) ## Use repeated cross validation with 2 folds and 2 repeats
+=======
+##  $ pregnant: num  6 1 8 0 5 10 2 8 10 10 ...
+##  $ glucose : num  148 85 183 137 116 115 197 125 168 139 ...
+##  $ pressure: num  72 66 64 40 74 0 70 96 74 80 ...
+##  $ triceps : num  35 29 0 35 0 0 45 0 0 0 ...
+##  $ insulin : num  0 0 0 168 0 0 543 0 0 0 ...
+##  $ mass    : num  33.6 26.6 23.3 43.1 25.6 35.3 30.5 0 38 27.1 ...
+##  $ pedigree: num  0.627 0.351 0.672 2.288 0.201 ...
+##  $ age     : num  50 31 32 33 30 29 53 54 34 57 ...
+##  $ binary  : num  1 0 1 1 0 0 1 1 1 0 ...</code></pre>
+<pre class="r"><code>## Building a random forest model
+model &lt;- train(as.factor(binary) ~ .,
+               data = train,
+               method = &quot;ranger&quot;,
+               trControl = trainControl(method = &quot;repeatedcv&quot;, number = 2, repeats = 2))
+>>>>>>> 8ee1231fc1ff07307ad3f80b43d6ba9f2ee61d67
 
 model</code></pre>
 <pre><code>## Random Forest 
@@ -442,22 +459,36 @@ model</code></pre>
 ## Resampling results across tuning parameters:
 ## 
 ##   mtry  splitrule   Accuracy   Kappa    
+<<<<<<< HEAD
 ##   2     gini        0.7527881  0.4478462
 ##   2     extratrees  0.7527881  0.4389916
 ##   5     gini        0.7481413  0.4417068
 ##   5     extratrees  0.7416357  0.4219133
 ##   8     gini        0.7425651  0.4269853
 ##   8     extratrees  0.7481413  0.4378394
+=======
+##   2     gini        0.7862454  0.5159103
+##   2     extratrees  0.7778810  0.4825498
+##   5     gini        0.7630112  0.4694227
+##   5     extratrees  0.7797398  0.4973285
+##   8     gini        0.7444238  0.4312437
+##   8     extratrees  0.7788104  0.4968699
+>>>>>>> 8ee1231fc1ff07307ad3f80b43d6ba9f2ee61d67
 ## 
 ## Tuning parameter &#39;min.node.size&#39; was held constant at a value of 1
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final values used for the model were mtry = 2, splitrule = gini
 ##  and min.node.size = 1.</code></pre>
+<<<<<<< HEAD
 <pre class="r"><code>## Testing the model on the test set and building a confusion matrix where 0 represents  diabetes negative and 1 represents diabetes positive
+=======
+<pre class="r"><code>## Testing the model on the test set and building a confusion matrix
+>>>>>>> 8ee1231fc1ff07307ad3f80b43d6ba9f2ee61d67
 pred_train &lt;- predict(model, train)
 pred_test &lt;- predict(model, test)
 
 pred_train</code></pre>
+<<<<<<< HEAD
 <pre><code>##   [1] 1 0 1 0 0 1 0 1 1 1 0 1 1 0 1 0 1 1 1 1 0 0 0 1 0 0 0 1 1 1 0 0 1 1 0 0 1
 ##  [38] 0 0 0 1 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 1 0 1 0 0 1 0 0 0 0 0 1 1 0
 ##  [75] 0 1 1 1 0 0 0 0 0 0 1 0 1 1 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 1 1 0 0 1
@@ -473,18 +504,44 @@ pred_train</code></pre>
 ## [445] 0 0 1 0 1 0 0 1 0 1 1 0 0 0 0 0 1 0 1 1 1 1 1 1 0 0 0 0 0 1 0 1 0 1 1 0 0
 ## [482] 0 1 0 1 1 0 0 1 0 0 0 1 1 0 0 0 1 0 1 0 0 0 0 0 1 1 0 0 0 0 0 0 1 1 0 0 1
 ## [519] 0 0 1 0 1 1 1 0 0 1 1 0 1 0 1 0 1 0 0 0
+=======
+<pre><code>##   [1] 1 0 1 1 0 0 1 1 1 0 1 1 1 0 1 0 1 1 1 1 1 0 0 0 0 0 0 0 1 1 0 1 1 0 1 0 0
+##  [38] 0 1 0 1 0 1 1 0 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0
+##  [75] 0 1 1 0 0 1 1 0 0 0 1 0 0 1 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0
+## [112] 1 0 0 0 1 1 0 0 0 1 1 1 1 0 0 0 0 1 0 1 0 1 0 1 0 0 0 0 0 0 1 1 0 1 1 1 1
+## [149] 1 0 0 0 0 1 0 0 0 0 1 1 1 0 0 0 1 0 0 0 0 0 1 1 0 0 1 0 0 1 0 1 1 0 0 0 1
+## [186] 0 0 0 1 0 1 1 0 0 0 1 1 1 0 0 1 0 1 1 0 0 1 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0
+## [223] 1 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 1 1 1 0 1 1 0 1 0 0 1 0 0 0 0 1 0 1 0 0
+## [260] 0 1 1 0 1 0 0 0 1 0 1 0 1 1 0 1 0 0 0 1 1 0 1 0 0 0 0 1 1 0 1 0 0 0 0 0 0
+## [297] 0 0 0 1 1 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 1 1 0 0 0
+## [334] 0 0 1 0 0 1 0 0 0 1 0 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+## [371] 0 1 0 0 0 1 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 1 0 0 1 1 1 0 1 0 1 1 0 1
+## [408] 0 1 0 0 1 0 1 0 0 0 1 1 0 1 0 0 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1
+## [445] 0 0 0 0 0 1 0 0 0 1 0 1 1 0 1 0 0 0 0 0 1 1 0 0 1 0 1 0 0 0 0 1 0 1 0 1 0
+## [482] 1 1 0 0 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0 1 1 0 0 0 0 0 0 1
+## [519] 1 0 0 0 0 1 0 1 1 0 1 0 1 1 0 0 0 0 1 0
+>>>>>>> 8ee1231fc1ff07307ad3f80b43d6ba9f2ee61d67
 ## Levels: 0 1</code></pre>
 <pre class="r"><code>confusionMatrix(pred_train, as.factor(train$binary))</code></pre>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
 ## Prediction   0   1
+<<<<<<< HEAD
 ##          0 344   0
 ##          1   0 194
 ##                                      
 ##                Accuracy : 1          
 ##                  95% CI : (0.9932, 1)
 ##     No Information Rate : 0.6394     
+=======
+##          0 348   0
+##          1   0 190
+##                                      
+##                Accuracy : 1          
+##                  95% CI : (0.9932, 1)
+##     No Information Rate : 0.6468     
+>>>>>>> 8ee1231fc1ff07307ad3f80b43d6ba9f2ee61d67
 ##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16  
 ##                                      
 ##                   Kappa : 1          
@@ -495,9 +552,15 @@ pred_train</code></pre>
 ##             Specificity : 1.0000     
 ##          Pos Pred Value : 1.0000     
 ##          Neg Pred Value : 1.0000     
+<<<<<<< HEAD
 ##              Prevalence : 0.6394     
 ##          Detection Rate : 0.6394     
 ##    Detection Prevalence : 0.6394     
+=======
+##              Prevalence : 0.6468     
+##          Detection Rate : 0.6468     
+##    Detection Prevalence : 0.6468     
+>>>>>>> 8ee1231fc1ff07307ad3f80b43d6ba9f2ee61d67
 ##       Balanced Accuracy : 1.0000     
 ##                                      
 ##        &#39;Positive&#39; Class : 0          
@@ -507,6 +570,7 @@ pred_train</code></pre>
 ## 
 ##           Reference
 ## Prediction   0   1
+<<<<<<< HEAD
 ##          0 129  23
 ##          1  27  51
 ##                                           
@@ -527,6 +591,28 @@ pred_train</code></pre>
 ##          Detection Rate : 0.5609          
 ##    Detection Prevalence : 0.6609          
 ##       Balanced Accuracy : 0.7581          
+=======
+##          0 125  30
+##          1  27  48
+##                                           
+##                Accuracy : 0.7522          
+##                  95% CI : (0.6912, 0.8066)
+##     No Information Rate : 0.6609          
+##     P-Value [Acc &gt; NIR] : 0.001746        
+##                                           
+##                   Kappa : 0.4419          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 0.791082        
+##                                           
+##             Sensitivity : 0.8224          
+##             Specificity : 0.6154          
+##          Pos Pred Value : 0.8065          
+##          Neg Pred Value : 0.6400          
+##              Prevalence : 0.6609          
+##          Detection Rate : 0.5435          
+##    Detection Prevalence : 0.6739          
+##       Balanced Accuracy : 0.7189          
+>>>>>>> 8ee1231fc1ff07307ad3f80b43d6ba9f2ee61d67
 ##                                           
 ##        &#39;Positive&#39; Class : 0               
 ## </code></pre>
